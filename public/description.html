@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Roughfts_Web-tool説明ページ</title>
+  <!--<link type="type/css" rel="stylesheet" href="https://assets.gamewith.jp/css/dist/home_mb.css?1735005898">-->
+  <link rel="icon" href="https://cdn.glitch.global/36478626-a9ef-40e3-97c4-1263e38275ac/Favicon512.png?v=1735652344246" type="image/png">
+  <link rel="shortcut icon" href="https://cdn.glitch.global/36478626-a9ef-40e3-97c4-1263e38275ac/favicon64_icon.ico?v=1735650581144" type="image/x-icon">
+  <link rel="apple-touch-icon" href="https://cdn.glitch.global/36478626-a9ef-40e3-97c4-1263e38275ac/Icon.png?v=1735649920596">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      line-height: 1.6;
+    }
+    h1, h2 {
+      color: #333;
+    }
+    a {
+      color: #007BFF;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .section {
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Roughftsです。学校・オフィスのプロキシ迂回サイトです。</h1>
+  <p>glitchのserver.jsでリクエストを受け取り、サーバー側でスクレイピングを行い、応答しています。<br>
+    クエリで送信する際も、プロキシはurlを検知してくるので、protocol,domain,path,queryの4つに元のurlを分割し、送信しています。<br>
+    ちなみにドメイン(edu-open-4step)の意味は、「学校のセキュリティは4ステップで簡単に突破できる」という意味です。<br>
+    4stepという数学の問題集の名前を含めることで、ログに残った時に先生にバレにくいだろうという目論見です。<br>
+    私の環境(ISGC)では、このサイト内で何を見たかというログは一切残っていませんでした。<br>
+    <br><br>
+    無料アカウントで運営しているので、月のサーバー駆動時間は1000時間、CPUもかなり性能の低いものですが、許してください。
+    
+  </p>
+  
+  <div class="section">
+    <h2>履歴</h2>
+    <!--<p><a href="history.html">履歴を見る</a></p>-->
+    <h2>GitHubのレポジトリ</h2>
+    <p>以下のリンクから、私のGitHubレポジトリを確認できます。</p>
+    <ul>
+      <li><a href="https://github.com/Stasshe/-school-filtering-ignore" target="_blank">学校規制回避レポ</a></li>
+      <li><a href="https://github.com/Stasshe/ShogiAPP-CeConV2.31" target="_blank">将棋アプリ（オンライン・個人研究・チャット・AI・棋譜巻き戻し・自由配置などかなり自由度は高い）</a></li>
+      <!-- 他のレポジトリも追加 -->
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>特定のサイトへの対応方法</h2>
+    <p>このサイトでは、特定のサイトに対して規制回避の方法を提供しています。</p>
+    <p>履歴保存機能では、最大12件まで直近のアクセスページを保存できます</p>
+    <p>また、サーバー側では、直近の他のユーザーが最近アクセスした40個のサイトをキャッシュし、高速化を目指しています。</p>
+    <ul>
+      <li>YouTubeの埋め込み対応</li>
+      <li>キャッシュを利用した高速応答</li>
+      <li>IndexedDBを利用したサイトそのまんま保存（履歴）</li>
+      <li>さらにpakoのgzip圧縮アルゴリズムで軽量化</li>
+      <!-- 他の対応方法を追加 -->
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>問い合わせ</h2>
+    <p>何かご質問がありましたら、以下のメールアドレスまでお問い合わせください。</p>
+    <p><a href="mailto:egnm9stasshe@gmail.com">egnm9stasshe@gmail.com</a></p>
+  </div>
+
+</body>
+</html>

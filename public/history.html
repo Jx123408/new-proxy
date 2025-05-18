@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>リクエスト履歴</title>
+    <style>
+      body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      line-height: 1.6;
+    }
+        table {
+            width: 150%;
+            border-collapse: collapse;
+          table-layout: fixed;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+      
+        td.url {
+            width: 100px;
+            word-break: break-all;
+        }
+        td.title {
+            width: 150px;
+          word-break: break-word;
+        }
+        td.ipAddress {
+            width: 15%;
+          word-break: break-all;
+        }
+        td.timestamp {
+            width: 25%;
+          word-break: break-all;
+        }
+      
+        .top-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: none;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .top-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>リクエスト履歴</h1>
+  <a href="https://edu-open-4step.glitch.me">最初のページに戻る</a>
+    <table id="historyTable">
+        <thead>
+            <tr>
+                <th>URL</th>
+                <th>タイトル</th>
+                <th>IPアドレス</th>
+                <th>タイムスタンプ</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- データはここに追加されます -->
+        </tbody>
+    </table>
+
+    <button class="top-button" id="topButton">トップへ戻る</button>
+<script>
+    document.addEventListener('DOMContentLoaded', async function() {
+        const FIREBASE_URL = "https://edu-open-4step-default-rtdb.firebaseio.com";
+        const historyResponse = await fetch(`${FIREBASE_URL}/requestHistory.json`);
+        const historyData = await historyResponse.json();
+
+        // データを新しい順に並べ替え
+        historyData.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+
+        const tableBody = document.getElementById('historyTable').querySelector('tbody');
+
+        historyData.forEach(entry => {
+            const row = document.createElement('tr');
+            
+            const urlCell = document.createElement('td');
+            urlCell.classList.add('url');
+            const urlLink = document.createElement('a');
+            urlLink.href = '#';
+            urlLink.textContent = 'サイトリンクコピー';
+            urlLink.addEventListener('click', function() {
+                navigator.clipboard.writeText(entry.url);
+                alert('URLがクリップボードにコピーされました');
+            });
+            urlCell.appendChild(urlLink);
+            row.appendChild(urlCell);
+
+            const titleCell = document.createElement('td');
+            titleCell.classList.add('title');
+            titleCell.textContent = entry.title;
+            row.appendChild(titleCell);
+
+            const ipAddressCell = document.createElement('td');
+            ipAddressCell.classList.add('ipAddress');
+            ipAddressCell.textContent = entry.ipAddress;
+            row.appendChild(ipAddressCell);
+
+            const timestampCell = document.createElement('td');
+            timestampCell.classList.add('timestamp');
+            timestampCell.textContent = entry.timestamp;
+            row.appendChild(timestampCell);
+
+            tableBody.appendChild(row);
+        });
+
+        // スクロールによるトップボタンの表示制御
+        window.onscroll = function() {
+            const topButton = document.getElementById('topButton');
+            if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+                topButton.style.display = 'block';
+            } else {
+                topButton.style.display = 'none';
+            }
+        };
+
+        // トップボタンのクリックイベント
+        document.getElementById('topButton').addEventListener('click', function() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        });
+    });
+</script>
+
+    </body>
+</html>
